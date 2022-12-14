@@ -73,6 +73,22 @@ response.send({sucess:true})
 
 });
 
+//read only messages whose text contains a given substring: /messages/search?text=express
+
+app.get("/messages/search?text=express", function (request,response){
+  
+})
+
+//read last 
+
+app.get("/last-messages/:number", function (request, response) {
+  const number = request.params.number;
+  // number=4, messages = [x,x,x,x,x,x,x,x] (length=8)
+  const firstIndex = messages.length - number; // 4th element onwards
+  const finalMessages = messages.filter((m, i) => i >= firstIndex);
+  response.send(finalMessages);
+});
+
 //port
 const port= 4000
 app.listen(port, () => {
